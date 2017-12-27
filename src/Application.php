@@ -22,6 +22,10 @@ class Application
         return $this->path . ($path ? '/' . $path : '');
     }
 
+    /**
+     * test
+     * @param $path
+     */
     public function force($path)
     {
         include $this->path($path);
