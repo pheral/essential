@@ -1,0 +1,22 @@
+{
+  "name": "pheral/essential",
+  "description": "The Pheral Essential.",
+  "keywords": ["essential", "pheral"],
+  "license": "MIT",
+  "homepage": "http://pheral.ru",
+  "support": {
+    "issues": "https://github.com/pheral/essential/issues",
+    "source": "https://github.com/pheral/essential"
+  },
+  "require": {
+    "php": ">=7.0.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Pheral\\Essential\\": "src/"
+    }
+  },
+  "config": {
+    "sort-packages": true
+  }
+}
