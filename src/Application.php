@@ -12,8 +12,18 @@ class Application
         $this->setPath($path);
     }
 
-    protected function setPath($path)
+    public function setPath($path)
     {
-        $this->path = $path;
+        $this->path = realpath(rtrim($path,'\/'));
+    }
+
+    public function path($path = '')
+    {
+        return $this->path . ($path ? '/' . $path : '');
+    }
+
+    public function force($path)
+    {
+        include $this->path($path);
     }
 }

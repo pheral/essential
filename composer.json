@@ -8,6 +8,12 @@
     "issues": "https://github.com/pheral/essential/issues",
     "source": "https://github.com/pheral/essential"
   },
+  "authors": [
+    {
+      "name": "Dmitriy Yudin",
+      "email": "pheral@yandex.ru"
+    }
+  ],
   "require": {
     "php": ">=7.0.0"
   },
