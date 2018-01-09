@@ -22,8 +22,8 @@ if (!function_exists('element')) {
     }
 }
 
-if (!function_exists('dbg')) {
-    function dbg(...$_)
+if (!function_exists('ddd')) {
+    function ddd(...$_)
     {
         if ($dbg = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2)) {
             $dbgCurrent = current($dbg);
@@ -43,13 +43,13 @@ if (!function_exists('dbg')) {
 
         } else {
 
-            call_user_func_array('debug', array_merge($_, [$callFrom]));
+            call_user_func_array('dd', array_merge($_, [$callFrom]));
         }
     }
 }
 
-if (!function_exists('debug')) {
-    function debug()
+if (!function_exists('dd')) {
+    function dd()
     {
         print (is_cli() ? PHP_EOL : '<pre style="border:1px solid red; background: orange">');
 

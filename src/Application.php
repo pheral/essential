@@ -20,6 +20,8 @@ class Application
 
     public function __construct($path)
     {
+        $this->loadHelpers();
+
         $this->setPath($path);
     }
 
@@ -35,8 +37,6 @@ class Application
 
     public function handle()
     {
-        $this->loadHelpers();
-
         Pool::set('App', $this);
 
         $this->handleCore();
