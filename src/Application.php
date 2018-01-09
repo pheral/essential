@@ -28,8 +28,6 @@ class Application
 
     public function force($path)
     {
-        dbg($this->getRequest());
-
         include $this->path($path);
     }
 
