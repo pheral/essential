@@ -35,9 +35,9 @@ class Application
 
     public function handle()
     {
-        Pool::set('App', $this);
-
         $this->loadHelpers();
+
+        Pool::set('App', $this);
 
         $this->handleCore();
     }
