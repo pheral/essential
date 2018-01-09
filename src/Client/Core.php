@@ -9,11 +9,8 @@ class Core implements CoreInterface
 {
     public function handle()
     {
-        // TODO: Implement handle() method.
+        return $this;
     }
 
-    public function getRequest()
-    {
-        // TODO: Implement getRequest() method.
-    }
+    public function getRequest() {  }
 }

@@ -16,6 +16,6 @@ class Request implements RequestInterface
 
     public function get($key, $default = null)
     {
-        return arr_get($this->headers, $key, $default);
+        return element($this->headers, $key, $default);
     }
 }

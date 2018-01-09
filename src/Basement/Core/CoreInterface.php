@@ -7,5 +7,8 @@ interface CoreInterface
 {
     public function handle();
 
+    /**
+     * @return \Pheral\Essential\Basement\Request\RequestInterface
+     */
     public function getRequest();
 }

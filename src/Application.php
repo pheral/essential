@@ -5,6 +5,7 @@ namespace Pheral\Essential;
 
 use Pheral\Essential\Basement\Core\CoreHandler;
 use Pheral\Essential\Basement\HelpersTrait;
+use Pheral\Essential\Basement\Pool;
 
 class Application
 {
@@ -12,12 +13,13 @@ class Application
 
     protected $path;
 
+    /**
+     * @var \Pheral\Essential\Basement\Core\CoreInterface
+     */
     protected $core;
 
     public function __construct($path)
     {
-        $this->loadHelpers();
-
         $this->setPath($path);
     }
 
@@ -31,18 +33,31 @@ class Application
         return $this->path . ($path ? '/' . $path : '');
     }
 
-    public function force($path)
-    {
-        include $this->path($path);
-    }
-
     public function handle()
     {
+        Pool::set('App', $this);
+
+        $this->loadHelpers();
+
         $this->handleCore();
     }
 
     protected function handleCore()
     {
         $this->core = CoreHandler::make();
+    }
+
+    public function getCore()
+    {
+        return $this->core;
+    }
+
+    /**
+     * @todo replace this temporary method
+     * @param $path
+     */
+    public function force($path)
+    {
+        include $this->path($path);
     }
 }

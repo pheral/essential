@@ -13,34 +13,34 @@ class Pool
 
     protected function __clone() {  }
 
-    public static function set($className, $class = null)
+    public static function set($name, $instance = null)
     {
-        if (!is_string($className)) {
+        if (!is_string($name)) {
             return null;
         }
 
         $createNew = true;
 
-        if (is_object($class)) {
+        if (is_object($instance)) {
             $createNew = false;
-        } elseif(!is_string($class)) {
-            $class = $className;
+        } elseif(!is_string($instance)) {
+            $instance = $name;
         }
 
-        if (!$object = arr_get(self::$pool, $className)) {
-            $object = $createNew ? new $class() : $class;
-            self::$pool[$className] = $object;
+        if (!$object = element(self::$pool, $name)) {
+            $object = $createNew ? new $instance() : $instance;
+            self::$pool[$name] = $object;
         }
 
         return $object;
     }
 
-    public static function get($className, $default = null)
+    public static function get($name, $default = null)
     {
-        if (!is_string($className)) {
+        if (!is_string($name)) {
             return null;
         }
 
-        return arr_get(self::$pool, $className, $default);
+        return element(self::$pool, $name, $default);
     }
 }

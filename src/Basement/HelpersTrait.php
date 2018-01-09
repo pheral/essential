@@ -7,11 +7,13 @@ trait HelpersTrait
 {
     protected $helpersFile = 'helpers';
 
-    protected $isLoadedHelpers;
+    protected $isObjectHelpers;
+
+    protected static $isStaticHelpers;
 
     public function loadHelpers()
     {
-        if (is_null($this->isLoadedHelpers)) {
+        if (is_null($this->isObjectHelpers)) {
 
             $reflector = (new \ReflectionClass($this));
 
@@ -23,10 +25,20 @@ trait HelpersTrait
 
                 require_once $helpersPath;
 
-                $this->isLoadedHelpers = true;
+                $this->isObjectHelpers = true;
             }
         }
 
-        return $this->isLoadedHelpers;
+        return $this->isObjectHelpers;
+    }
+
+    public static function staticLoadHelpers()
+    {
+        if (is_null(static::$isStaticHelpers)) {
+
+            static::$isStaticHelpers = (new static())->loadHelpers();
+        }
+
+        return static::$isStaticHelpers;
     }
 }

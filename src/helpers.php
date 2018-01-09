@@ -10,22 +10,15 @@ if (!function_exists('is_cli')) {
 if (!function_exists('is_ajax')) {
     function is_ajax()
     {
-        $xRequestedWith = arr_get($_SERVER, 'HTTP_X_REQUESTED_WITH');
+        $xRequestedWith = element($_SERVER, 'HTTP_X_REQUESTED_WITH');
         return $xRequestedWith && strtolower($xRequestedWith) === 'xmlhttprequest';
     }
 }
 
-if (!function_exists('arr_get')) {
-    function arr_get($array, $key, $default = null)
+if (!function_exists('element')) {
+    function element($array, $key, $default = null)
     {
         return is_array($array) && key_exists($key, $array) ? $array[$key] : $default;
-    }
-}
-
-if (!function_exists('arr_only')) {
-    function arr_only($array, $keys = [])
-    {
-        return array_intersect_key($array, array_flip((array) $keys));
     }
 }
 
@@ -37,7 +30,7 @@ if (!function_exists('dbg')) {
         }
 
         $callFrom = !empty($dbgCurrent)
-            ? implode(':', arr_only($dbgCurrent, ['file', 'line']))
+            ? element($dbgCurrent,'file') . ':' . element($dbgCurrent, 'line')
             : __FILE__.':'.__LINE__;
 
         if (is_ajax()) {
@@ -73,7 +66,7 @@ if (!function_exists('debug')) {
         }
 
         $callFrom = !empty($dbgCurrent)
-            ? implode(':', arr_only($dbgCurrent, ['file', 'line']))
+            ? element($dbgCurrent,'file') . ':' . element($dbgCurrent, 'line')
             : __FILE__.':'.__LINE__;
 
         print PHP_EOL . PHP_EOL . $callFrom;
