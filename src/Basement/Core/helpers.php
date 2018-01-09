@@ -18,7 +18,7 @@ if (!function_exists('app')) {
      */
     function app()
     {
-        return pool(\Pheral\Essential\Application::class);
+        return pool('App');
     }
 }
 
