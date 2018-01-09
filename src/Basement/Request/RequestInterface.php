@@ -1,6 +1,6 @@
 <?php
 
-namespace Pheral\Essential\Axis\Request;
+namespace Pheral\Essential\Basement\Request;
 
 
 interface RequestInterface

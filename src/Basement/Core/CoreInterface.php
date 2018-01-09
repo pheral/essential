@@ -1,6 +1,6 @@
 <?php
 
-namespace Pheral\Essential\Axis\Core;
+namespace Pheral\Essential\Basement\Core;
 
 
 interface CoreInterface

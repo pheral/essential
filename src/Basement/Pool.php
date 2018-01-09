@@ -1,6 +1,6 @@
 <?php
 
-namespace Pheral\Essential\Axis;
+namespace Pheral\Essential\Basement;
 
 
 class Pool
@@ -23,7 +23,7 @@ class Pool
 
         if (is_object($class)) {
             $createNew = false;
-        } else {
+        } elseif(!is_string($class)) {
             $class = $className;
         }
 

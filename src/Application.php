@@ -3,17 +3,22 @@
 namespace Pheral\Essential;
 
 
-use Pheral\Essential\Axis\Core\CoreHandler;
-use Pheral\Essential\Axis\Pool;
+use Pheral\Essential\Basement\Core\CoreHandler;
+use Pheral\Essential\Basement\HelpersTrait;
 
 class Application
 {
+    use HelpersTrait;
+
     protected $path;
+
+    protected $core;
 
     public function __construct($path)
     {
+        $this->loadHelpers();
+
         $this->setPath($path);
-        $this->handleCore();
     }
 
     public function setPath($path)
@@ -31,24 +36,13 @@ class Application
         include $this->path($path);
     }
 
+    public function handle()
+    {
+        $this->handleCore();
+    }
+
     protected function handleCore()
     {
-        Pool::set('Core', (new CoreHandler())->init()->get());
-    }
-
-    /**
-     * @return \Pheral\Essential\Axis\Core\CoreInterface
-     */
-    public function getCore()
-    {
-        return Pool::get('Core');
-    }
-
-    /**
-     * @return \Pheral\Essential\Axis\Request\RequestInterface
-     */
-    public function getRequest()
-    {
-        return $this->getCore()->getRequest();
+        $this->core = CoreHandler::make();
     }
 }

@@ -7,6 +7,14 @@ if (!function_exists('is_cli')) {
     }
 }
 
+if (!function_exists('is_ajax')) {
+    function is_ajax()
+    {
+        $xRequestedWith = arr_get($_SERVER, 'HTTP_X_REQUESTED_WITH');
+        return $xRequestedWith && strtolower($xRequestedWith) === 'xmlhttprequest';
+    }
+}
+
 if (!function_exists('arr_get')) {
     function arr_get($array, $key, $default = null)
     {
@@ -18,14 +26,6 @@ if (!function_exists('arr_only')) {
     function arr_only($array, $keys = [])
     {
         return array_intersect_key($array, array_flip((array) $keys));
-    }
-}
-
-if (!function_exists('is_ajax')) {
-    function is_ajax()
-    {
-        $xRequestedWith = arr_get($_SERVER, 'HTTP_X_REQUESTED_WITH');
-        return $xRequestedWith && strtolower($xRequestedWith) === 'xmlhttprequest';
     }
 }
 
@@ -65,6 +65,6 @@ if (!function_exists('debug')) {
 
         print (is_cli() ? PHP_EOL. '---' . PHP_EOL : '</pre>');
 
-        die();
+        die;
     }
 }
