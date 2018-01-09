@@ -22,16 +22,26 @@ if (!function_exists('element')) {
     }
 }
 
-if (!function_exists('ddd')) {
-    function ddd(...$_)
+if (!function_exists('call_from')) {
+
+    function call_from($limit = 3)
     {
-        if ($dbg = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2)) {
+        if ($dbg = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, $limit)) {
             $dbgCurrent = current($dbg);
         }
 
         $callFrom = !empty($dbgCurrent)
             ? element($dbgCurrent,'file') . ':' . element($dbgCurrent, 'line')
             : __FILE__.':'.__LINE__;
+
+        return $callFrom;
+    }
+}
+
+if (!function_exists('ddd')) {
+    function ddd(...$_)
+    {
+        $callFrom = call_from();
 
         if (is_ajax()) {
 
@@ -61,13 +71,7 @@ if (!function_exists('dd')) {
 
         print (is_cli() ? PHP_EOL : '<hr />');
 
-        if ($dbg = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2)) {
-            $dbgCurrent = current($dbg);
-        }
-
-        $callFrom = !empty($dbgCurrent)
-            ? element($dbgCurrent,'file') . ':' . element($dbgCurrent, 'line')
-            : __FILE__.':'.__LINE__;
+        $callFrom = call_from();
 
         print PHP_EOL . PHP_EOL . $callFrom;
 
