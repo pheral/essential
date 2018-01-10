@@ -58,14 +58,6 @@ class Application
     }
 
     /**
-     * @return \Pheral\Essential\Network\Request\RequestInterface
-     */
-    public function request()
-    {
-        return $this->get('request');
-    }
-
-    /**
      * @todo replace this temporary method
      * @param $path
      */

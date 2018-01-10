@@ -8,21 +8,29 @@ use Pheral\Essential\Network\Request\RequestInterface;
 
 class Request extends RequestAbstract implements RequestInterface
 {
+    /**
+     * @param $key
+     * @param null $default
+     * @return mixed|null
+     */
     public function get($key, $default = null)
     {
         return element($this->input, $key, $default);
     }
 
+    /**
+     * @return array
+     */
     public function all()
     {
         return $this->input;
     }
 
     /**
-     * @return \Pheral\Essential\Network\Route
+     * @return \Pheral\Essential\Network\Router
      */
-    public function route()
+    public function router()
     {
-        return $this->route;
+        return $this->router;
     }
 }

@@ -1,26 +1,10 @@
 <?php
 
-namespace Pheral\Essential\Network;
+namespace Pheral\Essential\Network\Router;
 
 
-use Pheral\Essential\Network\Route\RouteInterface;
-use Pheral\Essential\Network\Route\RouteAbstract;
-
-/**
- * @todo
- */
 class Route extends RouteAbstract implements RouteInterface
 {
-    /**
-     * @todo
-     * @param \Pheral\Essential\Network\Request $request
-     */
-    protected function parseMap(Request $request)
-    {
-        // TODO
-        return ;
-    }
-
     /**
      * @return mixed
      * @throws \Exception
@@ -28,19 +12,26 @@ class Route extends RouteAbstract implements RouteInterface
     public function getResponse()
     {
         $controller = $this->getController();
+
         $action = $this->getAction();
-        $params = $this->getParams();
 
         if (!$controller || !$action) {
             throw new \Exception('Undefined route');
         }
 
-        return call_user_func_array([$controller, $action], $params);
+        return call_user_func_array([$controller, $action], $this->getParams());
+    }
+
+    public function getName()
+    {
+        return $this->name;
     }
 
     public function getController()
     {
-        return $this->controller;
+        $reflector = new \ReflectionClass("\\App\\Controllers\\".$this->controller);
+
+        return $reflector->getName();
     }
 
     public function getAction()

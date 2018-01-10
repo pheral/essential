@@ -3,7 +3,7 @@
 namespace Pheral\Essential\Network\Request;
 
 
-use Pheral\Essential\Network\Route;
+use Pheral\Essential\Network\Router;
 
 abstract class RequestAbstract
 {
@@ -12,9 +12,9 @@ abstract class RequestAbstract
     protected $input = [];
 
     /**
-     * @var \Pheral\Essential\Network\Route
+     * @var \Pheral\Essential\Network\Router
      */
-    protected $route;
+    protected $router;
 
     public function __construct()
     {
@@ -22,7 +22,7 @@ abstract class RequestAbstract
 
         $this->input = $_REQUEST;
 
-        $this->route = new Route($this);
+        $this->router = new Router($this);
     }
 
     public function header($key = null)

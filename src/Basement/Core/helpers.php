@@ -12,7 +12,7 @@ if (!function_exists('app')) {
 
 if (!function_exists('request')) {
     /**
-     * @return \Pheral\Essential\Network\Request\RequestInterface
+     * @return \Pheral\Essential\Network\Request
      */
     function request()
     {
