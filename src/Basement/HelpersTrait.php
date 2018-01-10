@@ -7,10 +7,6 @@ trait HelpersTrait
 {
     protected $helperFile = 'helpers';
 
-    protected $isObjectHelpers;
-
-    protected static $isStaticHelpers;
-
     protected $loadedHelpers = [];
 
     protected function isHelperLoaded($helperPath)
@@ -29,7 +25,7 @@ trait HelpersTrait
 
         $helperPath = $dirName . '/' . $this->helperFile . '.php';
 
-        if (file_exists($helperPath) && !in_array($helperPath, $this->loadedHelpers, true)) {
+        if (!in_array($helperPath, $this->loadedHelpers, true) && file_exists($helperPath)) {
 
             require_once $helperPath;
 
@@ -42,9 +38,9 @@ trait HelpersTrait
         }
     }
 
-    public function loadHelpers($class = null)
+    public function loadHelpers()
     {
-        $reflector = (new \ReflectionClass($class ?? $this));
+        $reflector = (new \ReflectionClass($this));
 
         $this->loadHelpersWithAncestors($reflector);
     }
