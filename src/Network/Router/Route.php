@@ -29,7 +29,7 @@ class Route extends RouteAbstract implements RouteInterface
 
     public function getController()
     {
-        $reflector = new \ReflectionClass("\\App\\Controllers\\".$this->controller);
+        $reflector = new \ReflectionClass("\\App\\Network\\Controllers\\".$this->controller);
 
         return $reflector->getName();
     }
