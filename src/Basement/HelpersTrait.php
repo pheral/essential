@@ -5,40 +5,52 @@ namespace Pheral\Essential\Basement;
 
 trait HelpersTrait
 {
-    protected $helpersFile = 'helpers';
+    protected $helperFile = 'helpers';
 
     protected $isObjectHelpers;
 
     protected static $isStaticHelpers;
 
-    public function loadHelpers()
+    protected $loadedHelpers = [];
+
+    protected function isHelperLoaded($helperPath)
     {
-        if (is_null($this->isObjectHelpers)) {
-
-            $reflector = (new \ReflectionClass($this));
-
-            $dirName = dirname($reflector->getFileName());
-
-            $helpersPath = $dirName . '/' . $this->helpersFile . '.php';
-
-            if (file_exists($helpersPath)) {
-
-                require_once $helpersPath;
-
-                $this->isObjectHelpers = true;
-            }
-        }
-
-        return $this->isObjectHelpers;
+        return in_array($helperPath, $this->loadedHelpers, true);
     }
 
-    public static function staticLoadHelpers()
+    protected function loadHelpersWithAncestors(\ReflectionClass $reflector = null)
     {
-        if (is_null(static::$isStaticHelpers)) {
+        if (!$reflector) {
 
-            static::$isStaticHelpers = (new static())->loadHelpers();
+            return;
         }
 
-        return static::$isStaticHelpers;
+        $dirName = dirname($reflector->getFileName());
+
+        $helperPath = $dirName . '/' . $this->helperFile . '.php';
+
+        if (file_exists($helperPath) && !in_array($helperPath, $this->loadedHelpers, true)) {
+
+            require_once $helperPath;
+
+            $this->loadedHelpers[] = $helperPath;
+        }
+
+        if ($ancestor = $reflector->getParentClass()) {
+
+            $this->loadHelpersWithAncestors($ancestor);
+        }
+    }
+
+    public function loadHelpers($class = null)
+    {
+        $reflector = (new \ReflectionClass($class ?? $this));
+
+        $this->loadHelpersWithAncestors($reflector);
+    }
+
+    public static function loadHelpersByStatic()
+    {
+        (new static())->loadHelpers();
     }
 }

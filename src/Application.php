@@ -37,19 +37,14 @@ class Application
 
     public function handle()
     {
-        Pool::set('App', $this);
+        Pool::set('app', $this);
 
-        $this->handleCore();
-    }
-
-    protected function handleCore()
-    {
         $this->core = CoreHandler::make();
     }
 
-    public function getCore()
+    public function getRequest()
     {
-        return $this->core;
+        return $this->core->getRequest();
     }
 
     /**

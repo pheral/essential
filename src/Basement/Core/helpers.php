@@ -18,17 +18,7 @@ if (!function_exists('app')) {
      */
     function app()
     {
-        return pool('App');
-    }
-}
-
-if (!function_exists('core')) {
-    /**
-     * @return \Pheral\Essential\Basement\Core\CoreInterface
-     */
-    function core()
-    {
-        return app()->getCore();
+        return pool('app');
     }
 }
 
@@ -38,6 +28,6 @@ if (!function_exists('request')) {
      */
     function request()
     {
-        return core()->getRequest();
+        return app()->getRequest();
     }
 }
