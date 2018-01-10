@@ -2,16 +2,25 @@
 
 namespace Pheral\Essential\Basement;
 
-
 class Pool
 {
-    protected static $pool = [];
+    private static $instance;
 
-    protected function __construct() {  }
+    protected $pool = [];
+
+    private function __construct() {  }
+
+    private function __clone() {  }
 
     protected function __wakeup() {  }
 
-    protected function __clone() {  }
+    public static function instance()
+    {
+        if (!self::$instance) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
 
     public static function set($name, $instance = null)
     {
@@ -27,9 +36,9 @@ class Pool
             $instance = $name;
         }
 
-        if (!$object = element(self::$pool, $name)) {
+        if (!$object = self::get($name)) {
             $object = $createNew ? new $instance() : $instance;
-            self::$pool[$name] = $object;
+            self::instance()->pool[$name] = $object;
         }
 
         return $object;
@@ -41,6 +50,6 @@ class Pool
             return null;
         }
 
-        return element(self::$pool, $name, $default);
+        return element(self::instance()->pool, $name, $default);
     }
 }

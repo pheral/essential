@@ -13,8 +13,6 @@ class CoreHandler
      */
     public static function make()
     {
-        $core = is_cli() ? new ClientCore() : new NetworkCore();
-
-        return $core->handle();
+        return is_cli() ? new ClientCore() : new NetworkCore();
     }
 }

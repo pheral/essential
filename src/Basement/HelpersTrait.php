@@ -38,14 +38,14 @@ trait HelpersTrait
         }
     }
 
-    public function loadHelpers()
+    protected function loadHelpers()
     {
         $reflector = (new \ReflectionClass($this));
 
         $this->loadHelpersWithAncestors($reflector);
     }
 
-    public static function loadHelpersByStatic()
+    protected static function loadHelpersByStatic()
     {
         (new static())->loadHelpers();
     }

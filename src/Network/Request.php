@@ -3,19 +3,26 @@
 namespace Pheral\Essential\Network;
 
 
-use Pheral\Essential\Basement\Request\RequestInterface;
+use Pheral\Essential\Network\Request\RequestAbstract;
+use Pheral\Essential\Network\Request\RequestInterface;
 
-class Request implements RequestInterface
+class Request extends RequestAbstract implements RequestInterface
 {
-    protected $headers = [];
-
-    public function __construct()
-    {
-        $this->headers = apache_request_headers();
-    }
-
     public function get($key, $default = null)
     {
-        return element($this->headers, $key, $default);
+        return element($this->input, $key, $default);
+    }
+
+    public function all()
+    {
+        return $this->input;
+    }
+
+    /**
+     * @return \Pheral\Essential\Network\Route
+     */
+    public function route()
+    {
+        return $this->route;
     }
 }

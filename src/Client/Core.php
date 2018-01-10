@@ -12,9 +12,4 @@ class Core extends CoreAbstract implements CoreInterface
     {
         return $this;
     }
-
-    public function getRequest()
-    {
-        return $this->request;
-    }
 }

@@ -6,6 +6,7 @@ namespace Pheral\Essential;
 use Pheral\Essential\Basement\Core\CoreHandler;
 use Pheral\Essential\Basement\HelpersTrait;
 use Pheral\Essential\Basement\Pool;
+use Pheral\Essential\Network\Request;
 
 class Application
 {
@@ -35,16 +36,33 @@ class Application
         return $this->path . ($path ? '/' . $path : '');
     }
 
-    public function handle()
+    public function handle(Request $request)
     {
-        Pool::set('app', $this);
+        $this->set('app', $this);
+
+        $this->set('request', $request);
 
         $this->core = CoreHandler::make();
+
+        return $this->core->handle();
     }
 
-    public function getRequest()
+    public function set($name, $instance)
     {
-        return $this->core->getRequest();
+        return Pool::set($name, $instance);
+    }
+
+    public function get($name)
+    {
+        return Pool::get($name);
+    }
+
+    /**
+     * @return \Pheral\Essential\Network\Request\RequestInterface
+     */
+    public function request()
+    {
+        return $this->get('request');
     }
 
     /**

@@ -53,25 +53,34 @@ if (!function_exists('ddd')) {
 
         } else {
 
-            call_user_func_array('dd', array_merge($_, [$callFrom]));
+            call_user_func_array('dd', array_merge($_, ['DEBUG_CALL_FROM', $callFrom]));
         }
     }
 }
 
 if (!function_exists('dd')) {
-    function dd()
+    function dd(...$_)
     {
+        $flagDebugCallFrom = array_search('DEBUG_CALL_FROM', $_, true);
+
+        $hasFlagDebugCallFrom = ($flagDebugCallFrom !== false);
+
+        if ($hasFlagDebugCallFrom) {
+            $callFrom = $_[$flagDebugCallFrom + 1];
+            unset($_[$flagDebugCallFrom], $_[$flagDebugCallFrom + 1]);
+        }
+
         print (is_cli() ? PHP_EOL : '<pre style="border:1px solid red; background: orange">');
 
         array_map(function ($arg) {
 
             print print_r($arg, true) . (is_cli() ? PHP_EOL : '<br />');
 
-        }, func_get_args());
+        }, $_);
 
         print (is_cli() ? PHP_EOL : '<hr />');
 
-        $callFrom = call_from();
+        $callFrom = !empty($callFrom) ? $callFrom : call_from();
 
         print PHP_EOL . PHP_EOL . $callFrom;
 
