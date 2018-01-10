@@ -11,15 +11,20 @@ class Route extends RouteAbstract implements RouteInterface
      */
     public function getResponse()
     {
-        $controller = $this->getController();
+        $controllerShortName = $this->getController();
 
         $action = $this->getAction();
 
-        if (!$controller || !$action) {
+        if (!$controllerShortName || !$action) {
             throw new \Exception('Undefined route');
         }
 
-        return call_user_func_array([$controller, $action], $this->getParams());
+        $reflectionClass = new \ReflectionClass("\\App\\Network\\Controllers\\".$controllerShortName);
+        $controllerClass = $reflectionClass->getName();
+        $controller = new $controllerClass();
+
+        $reflectionMethod = new \ReflectionMethod($controller, $action);
+        return $reflectionMethod->invokeArgs($controller,$this->getParams());
     }
 
     public function getName()
@@ -29,9 +34,8 @@ class Route extends RouteAbstract implements RouteInterface
 
     public function getController()
     {
-        $reflector = new \ReflectionClass("\\App\\Network\\Controllers\\".$this->controller);
 
-        return $reflector->getName();
+        return $this->controller;
     }
 
     public function getAction()
