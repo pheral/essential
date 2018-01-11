@@ -1,9 +1,7 @@
 <?php
 
-namespace Pheral\Essential\Basement\Stack;
+namespace Pheral\Essential\Basement\Help;
 
-
-use Pheral\Essential\Helpers\HelpersTrait;
 
 class Pool
 {

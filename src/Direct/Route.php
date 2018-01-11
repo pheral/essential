@@ -1,29 +1,13 @@
 <?php
 
-namespace Pheral\Essential\Front\Routing;
+namespace Pheral\Essential\Direct;
 
 
-class Route implements RouteInterface
+use Pheral\Essential\Direct\Router\RouteAbstract;
+use Pheral\Essential\Direct\Router\RouteInterface;
+
+class Route extends RouteAbstract implements RouteInterface
 {
-    protected $name;
-
-    protected $controller;
-
-    protected $action;
-
-    protected $params = [];
-
-    public function __construct($name, $settings = [])
-    {
-        $this->name = $name;
-
-        $this->controller = element($settings, 'controller');
-
-        $this->action = element($settings, 'action');
-
-        $this->params = element($settings, 'params');
-    }
-
     /**
      * @return mixed
      * @throws \Exception
@@ -53,7 +37,6 @@ class Route implements RouteInterface
 
     public function getController()
     {
-
         return $this->controller;
     }
 

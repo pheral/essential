@@ -1,6 +1,6 @@
 <?php
 
-namespace Pheral\Essential\Front\Routing;
+namespace Pheral\Essential\Direct\Router;
 
 
 interface RouteInterface

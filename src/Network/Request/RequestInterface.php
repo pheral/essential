@@ -6,9 +6,9 @@ namespace Pheral\Essential\Network\Request;
 interface RequestInterface
 {
     /**
-     * @return \Pheral\Essential\Network\Router
+     * @return \Pheral\Essential\Direct\Route
      */
-    public function router();
+    public function route();
 
     /**
      * @param $key

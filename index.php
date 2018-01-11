@@ -9,7 +9,7 @@ $app->set('console', \Pheral\Essential\Console\Core::class);
 $app->set('network', \Pheral\Essential\Network\Core::class);
 
 $network = network(
-    new \Pheral\Essential\Network\Request()
+    (new \Pheral\Essential\Network\Request())->make()
 );
 
 $response = $network->handle();

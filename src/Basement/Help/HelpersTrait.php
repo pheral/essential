@@ -1,6 +1,6 @@
 <?php
 
-namespace Pheral\Essential\Helpers;
+namespace Pheral\Essential\Basement\Help;
 
 
 trait HelpersTrait
@@ -17,23 +17,18 @@ trait HelpersTrait
     protected function loadHelpersWithAncestors(\ReflectionClass $reflector = null)
     {
         if (!$reflector) {
-
             return;
         }
 
         $dirName = dirname($reflector->getFileName());
-
         $helperPath = $dirName . '/' . $this->helperFile . '.php';
 
         if (!in_array($helperPath, $this->loadedHelpers, true) && file_exists($helperPath)) {
-
-            require_once $helperPath;
-
+            require $helperPath;
             $this->loadedHelpers[] = $helperPath;
         }
 
         if ($ancestor = $reflector->getParentClass()) {
-
             $this->loadHelpersWithAncestors($ancestor);
         }
     }
@@ -41,7 +36,6 @@ trait HelpersTrait
     protected function loadHelpers()
     {
         $reflector = (new \ReflectionClass($this));
-
         $this->loadHelpersWithAncestors($reflector);
     }
 

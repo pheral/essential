@@ -5,9 +5,22 @@ namespace Pheral\Essential\Network;
 
 use Pheral\Essential\Network\Request\RequestAbstract;
 use Pheral\Essential\Network\Request\RequestInterface;
+use Pheral\Essential\Direct\Route;
 
 class Request extends RequestAbstract implements RequestInterface
 {
+    /**
+     * @var \Pheral\Essential\Direct\Route|null
+     */
+    protected $route;
+
+    public function make()
+    {
+        $this->route = Route::make($this);
+
+        return $this;
+    }
+
     /**
      * @param $key
      * @param null $default
@@ -27,10 +40,10 @@ class Request extends RequestAbstract implements RequestInterface
     }
 
     /**
-     * @return \Pheral\Essential\Front\Routing\Router
+     * @return \Pheral\Essential\Direct\Route
      */
-    public function router()
+    public function route()
     {
-        return $this->router;
+        return $this->route;
     }
 }

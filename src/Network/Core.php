@@ -10,10 +10,8 @@ class Core extends CoreAbstract implements CoreInterface
 {
     public function handle()
     {
-        $router = request()->router();
-
         try {
-            $response = $router->current()->getResponse();
+            $response = request()->route()->getResponse();
         } catch (\Throwable $e) {
             ddd($e->getFile().':'.$e->getLine().' "'.$e->getMessage().'"'.PHP_EOL.PHP_EOL.$e->getTraceAsString());
         }

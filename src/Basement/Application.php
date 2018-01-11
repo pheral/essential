@@ -3,8 +3,8 @@
 namespace Pheral\Essential\Basement;
 
 
-use Pheral\Essential\Basement\Stack\Pool;
-use Pheral\Essential\Helpers\HelpersTrait;
+use Pheral\Essential\Basement\Help\HelpersTrait;
+use Pheral\Essential\Basement\Help\Pool;
 
 class Application
 {
@@ -64,14 +64,5 @@ class Application
     public function get($name)
     {
         return Pool::get($name);
-    }
-
-    /**
-     * @todo replace this temporary method
-     * @param $path
-     */
-    public function force($path)
-    {
-        include $this->path($path);
     }
 }

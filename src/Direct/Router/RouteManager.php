@@ -1,17 +1,18 @@
 <?php
 
-namespace Pheral\Essential\Front\Routing;
+namespace Pheral\Essential\Direct\Router;
 
 
+use Pheral\Essential\Direct\Route;
 use \Pheral\Essential\Network\Request;
 
 /**
  * @todo
  */
-class Router
+class RouteManager
 {
     /**
-     * @var \Pheral\Essential\Front\Routing\Route
+     * @var \Pheral\Essential\Direct\Route
      */
     protected $current;
 
@@ -25,7 +26,7 @@ class Router
     /**
      * @todo
      * @param \Pheral\Essential\Network\Request $request
-     * @return \Pheral\Essential\Front\Routing\Router
+     * @return \Pheral\Essential\Direct\Router\RouteManager
      */
     protected function parse(Request $request)
     {
@@ -50,8 +51,8 @@ class Router
 
     /**
      * @param $name
-     * @param \Pheral\Essential\Front\Routing\Route $route
-     * @return \Pheral\Essential\Front\Routing\Router
+     * @param \Pheral\Essential\Direct\Route $route
+     * @return \Pheral\Essential\Direct\Router\RouteManager
      */
     public function set($name, Route $route)
     {
@@ -62,7 +63,7 @@ class Router
 
     /**
      * @param string $name
-     * @return \Pheral\Essential\Front\Routing\Route
+     * @return \Pheral\Essential\Direct\Route
      */
     public function get($name)
     {
@@ -70,7 +71,7 @@ class Router
     }
 
     /**
-     * @return \Pheral\Essential\Front\Routing\Route
+     * @return \Pheral\Essential\Direct\Route
      */
     public function current()
     {

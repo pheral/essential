@@ -6,7 +6,7 @@ if (!function_exists('app')) {
      */
     function app()
     {
-        return \Pheral\Essential\Basement\Stack\Pool::get('app');
+        return \Pheral\Essential\Basement\Help\Pool::get('app');
     }
 }
 
