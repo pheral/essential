@@ -30,7 +30,8 @@ abstract class ViewAbstract
 
     public function setPath($path)
     {
-        $this->path = app()->path($this->templatesDir . '/' . ltrim($path, '/'));
+        $pathSegments = explode('.', trim($path, '.'));
+        $this->path = app()->path($this->templatesDir . '/' . implode('/', $pathSegments) . '.php');
     }
 
     public function getPath()

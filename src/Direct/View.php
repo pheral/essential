@@ -25,7 +25,7 @@ class View extends ViewAbstract
         $filePath = $this->getPath();
 
         if (!file_exists($filePath)) {
-            ddd('undefined view template');
+            ddd('undefined view template', $filePath);
         }
 
         if ($data = array_merge($this->getData(), $data)) {
