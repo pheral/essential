@@ -25,10 +25,29 @@ class BasementApplicationTest extends TestCase
         $this->app = null;
     }
 
-    public function testSetPath()
+    /**
+     * @return array
+     */
+    public function setPathDataProvider()
+    {
+        return [
+            [__DIR__, 'foo', __DIR__ . '/foo'],
+            [__DIR__ . '/../', 'bar', dirname(__DIR__) . '/bar'],
+            ['', 'baz', realpath($_SERVER['DOCUMENT_ROOT']) . '/baz'],
+        ];
+    }
+
+    /**
+     * @dataProvider setPathDataProvider
+     *
+     * @param $absolute
+     * @param $relative
+     * @param $expected
+     */
+    public function testSetPath($absolute, $relative, $expected)
     {
         $app = $this->app;
-        $app->setPath(__DIR__);
-        $this->assertEquals(__DIR__.'/foo', $app->path('foo'));
+        $app->setPath($absolute);
+        $this->assertEquals($expected, $app->path($relative));
     }
 }
