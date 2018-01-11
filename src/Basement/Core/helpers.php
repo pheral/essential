@@ -2,7 +2,7 @@
 
 if (!function_exists('app')) {
     /**
-     * @return \Pheral\Essential\Application
+     * @return \Pheral\Essential\Basement\Application
      */
     function app()
     {
