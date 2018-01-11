@@ -1,14 +1,22 @@
 <?php
 
-namespace Pheral\Essential\Basement;
+namespace Pheral\Essential\Basement\Stack;
+
+
+use Pheral\Essential\Helpers\HelpersTrait;
 
 class Pool
 {
+    use HelpersTrait;
+
     private static $instance;
 
     protected $pool = [];
 
-    private function __construct() {  }
+    private function __construct()
+    {
+        $this->loadHelpers();
+    }
 
     private function __clone() {  }
 

@@ -3,7 +3,7 @@
 namespace Pheral\Essential\Network\Request;
 
 
-use Pheral\Essential\Network\Router;
+use Pheral\Essential\Front\Routing\Router;
 
 abstract class RequestAbstract
 {
@@ -12,7 +12,7 @@ abstract class RequestAbstract
     protected $input = [];
 
     /**
-     * @var \Pheral\Essential\Network\Router
+     * @var \Pheral\Essential\Front\Routing\Router
      */
     protected $router;
 

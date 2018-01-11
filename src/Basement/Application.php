@@ -3,8 +3,8 @@
 namespace Pheral\Essential\Basement;
 
 
-use Pheral\Essential\Basement\Core\CoreHandler;
-use Pheral\Essential\Network\Request;
+use Pheral\Essential\Basement\Stack\Pool;
+use Pheral\Essential\Helpers\HelpersTrait;
 
 class Application
 {
@@ -16,21 +16,18 @@ class Application
     protected $path;
 
     /**
-     * @var \Pheral\Essential\Basement\Core\CoreInterface
-     */
-    protected $core;
-
-    /**
      * Application constructor.
      * @param null $path
      */
     public function __construct($path = null)
     {
+        $this->loadHelpers();
+
         if ($path) {
             $this->setPath($path);
         }
 
-        $this->loadHelpers();
+        $this->set('app', $this);
     }
 
     /**
@@ -48,21 +45,6 @@ class Application
     public function path($path = '')
     {
         return $this->path . ($path ? '/' . $path : '');
-    }
-
-    /**
-     * @param \Pheral\Essential\Network\Request $request
-     * @return mixed
-     */
-    public function handle(Request $request)
-    {
-        $this->set('app', $this);
-
-        $this->set('request', $request);
-
-        $this->core = CoreHandler::make();
-
-        return $this->core->handle();
     }
 
     /**

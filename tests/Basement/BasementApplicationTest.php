@@ -9,36 +9,49 @@ use \PHPUnit\Framework\TestCase;
 
 class BasementApplicationTest extends TestCase
 {
-    /**
-     * @var \Pheral\Essential\Basement\Application|null
-     */
-    private $app;
-
-    protected function setUp()
-    {
-        $this->app = new Application();
-    }
-
     protected function tearDown()
     {
         Mockery::close();
-        $this->app = null;
     }
 
     /**
      * @return array
      */
-    public function setPathDataProvider()
+    public function dataConstruct()
     {
         return [
-            [__DIR__, 'foo', __DIR__ . '/foo'],
-            [__DIR__ . '/../', 'bar', dirname(__DIR__) . '/bar'],
-            ['', 'baz', realpath($_SERVER['DOCUMENT_ROOT']) . '/baz'],
+            [__DIR__, __DIR__],
+            [__DIR__.'/../', dirname(__DIR__)],
+            ['', ''],
         ];
     }
 
     /**
-     * @dataProvider setPathDataProvider
+     * @dataProvider dataConstruct
+     *
+     * @param $passed
+     * @param $expected
+     */
+    public function testConstruct($passed, $expected)
+    {
+        $app = new Application($passed);
+        $this->assertEquals($expected, $app->path());
+    }
+
+    /**
+     * @return array
+     */
+    public function dataSetPath()
+    {
+        return [
+            [__DIR__, 'foo', __DIR__.'/foo'],
+            [__DIR__.'/../', 'bar', dirname(__DIR__).'/bar'],
+            [null, 'baz', realpath($_SERVER['DOCUMENT_ROOT']).'/baz'],
+        ];
+    }
+
+    /**
+     * @dataProvider dataSetPath
      *
      * @param $absolute
      * @param $relative
@@ -46,8 +59,13 @@ class BasementApplicationTest extends TestCase
      */
     public function testSetPath($absolute, $relative, $expected)
     {
-        $app = $this->app;
+        $app = new Application();
         $app->setPath($absolute);
         $this->assertEquals($expected, $app->path($relative));
+    }
+
+    public function testGet()
+    {
+        $this->assertTrue((new Application())->get('app') instanceof Application);
     }
 }

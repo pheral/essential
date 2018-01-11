@@ -1,6 +1,6 @@
 <?php
 
-namespace Pheral\Essential\Basement;
+namespace Pheral\Essential\Helpers;
 
 
 trait HelpersTrait

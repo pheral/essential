@@ -27,7 +27,7 @@ class Request extends RequestAbstract implements RequestInterface
     }
 
     /**
-     * @return \Pheral\Essential\Network\Router
+     * @return \Pheral\Essential\Front\Routing\Router
      */
     public function router()
     {

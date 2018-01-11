@@ -1,6 +1,6 @@
 <?php
 
-namespace Pheral\Essential\Client;
+namespace Pheral\Essential\Console;
 
 
 use Pheral\Essential\Basement\Core\CoreAbstract;
