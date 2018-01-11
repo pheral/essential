@@ -1,17 +1,18 @@
 <?php
 
-namespace Pheral\Essential;
+namespace Pheral\Essential\Basement;
 
 
 use Pheral\Essential\Basement\Core\CoreHandler;
-use Pheral\Essential\Basement\HelpersTrait;
-use Pheral\Essential\Basement\Pool;
 use Pheral\Essential\Network\Request;
 
 class Application
 {
     use HelpersTrait;
 
+    /**
+     * @var string|null
+     */
     protected $path;
 
     /**
@@ -19,23 +20,40 @@ class Application
      */
     protected $core;
 
-    public function __construct($path)
+    /**
+     * Application constructor.
+     * @param null $path
+     */
+    public function __construct($path = null)
     {
-        $this->loadHelpers();
+        if ($path) {
+            $this->setPath($path);
+        }
 
-        $this->setPath($path);
+        $this->loadHelpers();
     }
 
+    /**
+     * @param string $path
+     */
     public function setPath($path)
     {
         $this->path = realpath(rtrim($path,'\/'));
     }
 
+    /**
+     * @param string $path
+     * @return string
+     */
     public function path($path = '')
     {
         return $this->path . ($path ? '/' . $path : '');
     }
 
+    /**
+     * @param \Pheral\Essential\Network\Request $request
+     * @return mixed
+     */
     public function handle(Request $request)
     {
         $this->set('app', $this);
@@ -47,11 +65,20 @@ class Application
         return $this->core->handle();
     }
 
+    /**
+     * @param string $name
+     * @param mixed|object|string $instance
+     * @return mixed|null|string
+     */
     public function set($name, $instance)
     {
         return Pool::set($name, $instance);
     }
 
+    /**
+     * @param string $name
+     * @return mixed|null
+     */
     public function get($name)
     {
         return Pool::get($name);
