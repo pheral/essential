@@ -31,7 +31,6 @@ class Pool
     public static function set($name, $instance = null)
     {
         if (!is_string($name)) {
-            1 * if();
             return null;
         }
 
