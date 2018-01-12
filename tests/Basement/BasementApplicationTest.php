@@ -23,7 +23,6 @@ class BasementApplicationTest extends TestCase
             [__DIR__, __DIR__],
             [__DIR__.'/../', dirname(__DIR__)],
             ['', ''],
-            ['', 'bar'],
         ];
     }
 
