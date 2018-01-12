@@ -23,7 +23,6 @@ if (!function_exists('element')) {
 }
 
 if (!function_exists('call_from')) {
-
     function call_from($limit = 3)
     {
         if ($dbg = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, $limit)) {
