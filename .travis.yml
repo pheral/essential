@@ -23,6 +23,4 @@ install:
 
 script:
   - vendor/bin/phpunit
-
-after_script:
   - ./phpsyntax
