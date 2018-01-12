@@ -12,8 +12,6 @@ class Controller
      */
     public function render($view, $data = [])
     {
-        1 * if();
-
         if (!$view instanceof View) {
             $view = new View($view);
         }
