@@ -22,6 +22,7 @@ class View extends ViewAbstract
      */
     public function partial($data = [])
     {
+        $anotherBug = 1
         $filePath = $this->getPath();
 
         if (!file_exists($filePath)) {

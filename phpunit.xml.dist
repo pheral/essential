@@ -2,7 +2,7 @@
 <phpunit bootstrap="tests/preload.php" verbose="true" colors="true">
     <testsuites>
         <testsuite name="Pheral Test Suite">
-            <directory>./tests</directory>
+            <directory suffix="Test.php">./tests</directory>
         </testsuite>
     </testsuites>
     <filter>
