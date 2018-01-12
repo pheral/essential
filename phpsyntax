@@ -1,0 +1,1 @@
+! find . -type f -name "*.php" ! -path "./vendor/*" -exec php -d error_reporting=32767 -l {} \; 2>&1 >&- | grep "^"

@@ -22,6 +22,6 @@ install:
   - if [[ $setup = 'lowest' ]]; then travis_retry composer update --prefer-dist --no-interaction --prefer-lowest --prefer-stable --no-suggest; fi
 
 before_script:
-  - '! find . -type f -name "*.php" ! -path "./vendor/*" -exec php -d error_reporting=32767 -l {} \; 2>&1 >&- | grep "^"'
+  - ./phpsyntax
 
 script: vendor/bin/phpunit
