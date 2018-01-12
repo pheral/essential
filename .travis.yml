@@ -1,5 +1,8 @@
 language: php
 
+os:
+  - linux
+
 env:
   global:
     - setup=stable
