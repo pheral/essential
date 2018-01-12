@@ -1,5 +1,8 @@
 language: php
 
+php:
+  - hhvm
+
 env:
   global:
     - setup=stable
