@@ -2,7 +2,6 @@
 
 namespace Pheral\Essential\Basement\Help;
 
-
 trait HelpersTrait
 {
     protected $helperFile = 'helpers';
