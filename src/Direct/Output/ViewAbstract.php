@@ -2,7 +2,6 @@
 
 namespace Pheral\Essential\Direct\Output;
 
-
 use Pheral\Essential\Basement\Help\HelpersTrait;
 
 abstract class ViewAbstract

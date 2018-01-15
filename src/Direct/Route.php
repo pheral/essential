@@ -2,7 +2,6 @@
 
 namespace Pheral\Essential\Direct;
 
-
 use Pheral\Essential\Direct\Router\RouteAbstract;
 use Pheral\Essential\Direct\Router\RouteInterface;
 
@@ -27,7 +26,7 @@ class Route extends RouteAbstract implements RouteInterface
         $controller = new $controllerClass();
 
         $reflectionMethod = new \ReflectionMethod($controller, $action);
-        return $reflectionMethod->invokeArgs($controller,$this->getParams());
+        return $reflectionMethod->invokeArgs($controller, $this->getParams());
     }
 
     public function getName()

@@ -30,7 +30,7 @@ if (!function_exists('call_from')) {
         }
 
         $callFrom = !empty($dbgCurrent)
-            ? element($dbgCurrent,'file') . ':' . element($dbgCurrent, 'line')
+            ? element($dbgCurrent, 'file') . ':' . element($dbgCurrent, 'line')
             : __FILE__.':'.__LINE__;
 
         return $callFrom;
@@ -43,15 +43,10 @@ if (!function_exists('ddd')) {
         $callFrom = call_from();
 
         if (is_ajax()) {
-
             var_export($_);
-
             print PHP_EOL . PHP_EOL . $callFrom;
-
             die;
-
         } else {
-
             call_user_func_array('dd', array_merge($_, ['DEBUG_CALL_FROM', $callFrom]));
         }
     }
@@ -72,9 +67,7 @@ if (!function_exists('dd')) {
         print (is_cli() ? PHP_EOL : '<pre style="border:1px solid red; background: orange">');
 
         array_map(function ($arg) {
-
             print print_r($arg, true) . (is_cli() ? PHP_EOL : '<br />');
-
         }, $_);
 
         print (is_cli() ? PHP_EOL : '<hr />');

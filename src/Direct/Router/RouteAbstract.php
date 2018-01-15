@@ -2,7 +2,6 @@
 
 namespace Pheral\Essential\Direct\Router;
 
-
 use Pheral\Essential\Network\Request;
 
 abstract class RouteAbstract

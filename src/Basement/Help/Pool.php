@@ -2,7 +2,6 @@
 
 namespace Pheral\Essential\Basement\Help;
 
-
 class Pool
 {
     use HelpersTrait;
@@ -16,9 +15,13 @@ class Pool
         $this->loadHelpers();
     }
 
-    private function __clone() {  }
+    private function __clone()
+    {
+    }
 
-    protected function __wakeup() {  }
+    protected function __wakeup()
+    {
+    }
 
     public static function instance()
     {
@@ -38,7 +41,7 @@ class Pool
 
         if (is_object($instance)) {
             $createNew = false;
-        } elseif(!is_string($instance)) {
+        } elseif (!is_string($instance)) {
             $instance = $name;
         }
 

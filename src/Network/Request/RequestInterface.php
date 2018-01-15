@@ -2,7 +2,6 @@
 
 namespace Pheral\Essential\Network\Request;
 
-
 interface RequestInterface
 {
     /**

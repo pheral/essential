@@ -2,7 +2,6 @@
 
 namespace Pheral\Essential\Direct;
 
-
 use Pheral\Essential\Direct\Output\ViewAbstract;
 
 class View extends ViewAbstract

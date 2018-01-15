@@ -2,7 +2,6 @@
 
 namespace Pheral\Essential\Direct\Router;
 
-
 interface RouteInterface
 {
     public function getResponse();

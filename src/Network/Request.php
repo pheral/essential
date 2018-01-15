@@ -2,7 +2,6 @@
 
 namespace Pheral\Essential\Network;
 
-
 use Pheral\Essential\Network\Request\RequestAbstract;
 use Pheral\Essential\Network\Request\RequestInterface;
 use Pheral\Essential\Direct\Route;

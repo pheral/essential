@@ -2,7 +2,6 @@
 
 namespace Pheral\Essential\Network;
 
-
 use Pheral\Essential\Basement\Core\CoreAbstract;
 use Pheral\Essential\Basement\Core\CoreInterface;
 

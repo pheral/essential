@@ -2,7 +2,6 @@
 
 namespace Pheral\Essential\Basement;
 
-
 use Pheral\Essential\Basement\Help\HelpersTrait;
 use Pheral\Essential\Basement\Help\Pool;
 
@@ -35,7 +34,7 @@ class Application
      */
     public function setPath($path)
     {
-        $this->path = realpath(rtrim($path,'\/'));
+        $this->path = realpath(rtrim($path, '\/'));
     }
 
     /**

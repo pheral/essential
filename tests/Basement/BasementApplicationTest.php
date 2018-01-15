@@ -2,7 +2,6 @@
 
 namespace Pheral\Tests\Basement;
 
-
 use \Mockery;
 use \Pheral\Essential\Basement\Application;
 use \PHPUnit\Framework\TestCase;

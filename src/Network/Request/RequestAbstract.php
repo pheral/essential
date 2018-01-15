@@ -2,7 +2,6 @@
 
 namespace Pheral\Essential\Network\Request;
 
-
 abstract class RequestAbstract
 {
     protected $headers = [];
